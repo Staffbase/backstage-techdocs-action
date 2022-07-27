@@ -1,6 +1,6 @@
 # Contributing
 
-Staffbase uses CLAs, or Contributor License Agreements, to manage contributions to Free and Open Source Software projects that it hosts. 
+Staffbase uses CLAs, or Contributor License Agreements, to manage contributions to Free and Open Source Software projects that it hosts.
 
 Staffbase uses two versions of the CLA:
 
