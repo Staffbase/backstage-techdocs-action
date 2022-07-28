@@ -8,8 +8,8 @@ The action facilitated [TechDocs CLI](https://backstage.io/docs/features/techdoc
 
 - Building TechDocs only
 - Building and publish TechDocs to cloud object storage
-  - AWS S3
-  - Azure Blob
+  - [AWS S3](https://aws.amazon.com/s3/)
+  - [Azure Blob](https://azure.microsoft.com/en-us/services/storage/blobs/)
 
 ## Usage
 
@@ -43,18 +43,18 @@ jobs:
 
 ## Configuration
 
-| Name                    | Description                                                                      | Required | Default        |
-| ----------------------- | -------------------------------------------------------------------------------- | -------- | -------------- |
-| `entity-namespace`      | Entity namespace in Backstage                                                    | `true`   | `default`      |
-| `entity-kind`           | Kind of the Backstage entity                                                     | `true`   | `Component`    |
-| `entity-name`           | Name of the Backstage entity                                                     | `true`   |                |
-| `publisher-type`        | `awsS3` or `azureBlobStorage`. If not set, generated site will not be published. | `false`  |                |
-| `storage-name`          | In case of AWS, use the bucket name. In case of Azure, use container name.       | `false`  |                |
-| `aws-region`            | **Required if `publisher-type: awsS3`** AWS Region                               | `false`  | `eu-central-1` |
-| `aws-access-key-id`     | **Required if `publisher-type: awsS3`** AWS Access Key ID                        | `false`  |                |
-| `aws-secret-access-key` | **Required if `publisher-type: awsS3`** AWS Secret Access Key                    | `false`  |                |
-| `azure-account-name`    | **Required if `publisher-type: azureBlobStorage`** Azure Account Name            | `false`  |                |
-| `azure-account-key`     | **Required if `publisher-type: azureBlobStorage`** Azure Account Key             | `false`  |                |
+| Name                    | Description                                                                        | Required | Default        |
+| ----------------------- | ---------------------------------------------------------------------------------- | -------- | -------------- |
+| `entity-namespace`      | Entity namespace in Backstage                                                      | `true`   | `default`      |
+| `entity-kind`           | Kind of the Backstage entity                                                       | `true`   | `Component`    |
+| `entity-name`           | Name of the Backstage entity                                                       | `true`   |                |
+| `publisher-type`        | `awsS3` or `azureBlobStorage`. If not set, generated site will not be published.   | `false`  |                |
+| `storage-name`          | In case of AWS, use the bucket name. In case of Azure, use container name.         | `false`  |                |
+| `aws-region`            | **Required if `publisher-type: awsS3`** - AWS Region                               | `false`  | `eu-central-1` |
+| `aws-access-key-id`     | **Required if `publisher-type: awsS3`** - AWS Access Key ID                        | `false`  |                |
+| `aws-secret-access-key` | **Required if `publisher-type: awsS3`** - AWS Secret Access Key                    | `false`  |                |
+| `azure-account-name`    | **Required if `publisher-type: azureBlobStorage`** - Azure Account Name            | `false`  |                |
+| `azure-account-key`     | **Required if `publisher-type: azureBlobStorage`** - Azure Account Key             | `false`  |                |
 
 ## Contributing
 
