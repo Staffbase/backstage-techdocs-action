@@ -66,18 +66,18 @@ runs:
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
         AWS_REGION: ${{ inputs.aws-region }}
       run: |
-        techdocs-cli publish --publisher-type ${{ inputs.publisher-type }}
-        --storage-name ${{ inputs.storage-name }}
+        techdocs-cli publish --publisher-type ${{ inputs.publisher-type }} \
+        --storage-name ${{ inputs.storage-name }} \
         --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-type }}/${{ inputs.entity-name }}
 
     - name: Publish TechDocs site to Azure Blob
       if: inputs.publisher-type == 'azureBlobStorage' && inputs.azure-account-name != '' && inputs.azure-account-key != ''
       shell: bash
       run: |
-        techdocs-cli publish --publisher-type ${{ inputs.publisher-type }}
-        --storage-name ${{ inputs.storage-name }}
-        --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-type }}/${{ inputs.entity-name }}
-        --azureAccountName ${{ inputs.azure-account-name }}
+        techdocs-cli publish --publisher-type ${{ inputs.publisher-type }} \
+        --storage-name ${{ inputs.storage-name }} \
+        --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-type }}/${{ inputs.entity-name }} \
+        --azureAccountName ${{ inputs.azure-account-name }} \
         --azureAccountKey ${{ inputs.azure-account-key }}
 
 branding:
