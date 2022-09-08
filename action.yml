@@ -68,7 +68,7 @@ runs:
       run: |
         techdocs-cli publish --publisher-type ${{ inputs.publisher-type }} \
         --storage-name ${{ inputs.storage-name }} \
-        --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-type }}/${{ inputs.entity-name }}
+        --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-kind }}/${{ inputs.entity-name }}
 
     - name: Publish TechDocs site to Azure Blob
       if: inputs.publisher-type == 'azureBlobStorage' && inputs.azure-account-name != '' && inputs.azure-account-key != ''
@@ -76,7 +76,7 @@ runs:
       run: |
         techdocs-cli publish --publisher-type ${{ inputs.publisher-type }} \
         --storage-name ${{ inputs.storage-name }} \
-        --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-type }}/${{ inputs.entity-name }} \
+        --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-kind }}/${{ inputs.entity-name }} \
         --azureAccountName ${{ inputs.azure-account-name }} \
         --azureAccountKey ${{ inputs.azure-account-key }}
 
