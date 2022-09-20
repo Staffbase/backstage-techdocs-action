@@ -59,7 +59,7 @@ runs:
       run: techdocs-cli generate --no-docker --verbose
 
     - name: Publish TechDocs site to AWS S3
-      if: inputs.publisher-type == 'awsS3' && inputs.aws-access-key-id != '' && inputs.aws-secret-access-key != '' && inputs.aws-region != ''
+      if: inputs.publisher-type == 'awsS3'
       shell: bash
       env:
         AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
@@ -71,7 +71,7 @@ runs:
         --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-kind }}/${{ inputs.entity-name }}
 
     - name: Publish TechDocs site to Azure Blob
-      if: inputs.publisher-type == 'azureBlobStorage' && inputs.azure-account-name != '' && inputs.azure-account-key != ''
+      if: inputs.publisher-type == 'azureBlobStorage'
       shell: bash
       run: |
         techdocs-cli publish --publisher-type ${{ inputs.publisher-type }} \
