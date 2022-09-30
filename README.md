@@ -13,6 +13,8 @@ The action facilitated [TechDocs CLI](https://backstage.io/docs/features/techdoc
 
 ## Usage
 
+### Minimal Example
+
 The following shows a minimal example of building and publishing TechDocs to AWS S3.
 
 ```yaml
@@ -25,6 +27,7 @@ on:
     paths:
       - "docs/**"
       - "mkdocs.yml"
+      - ".github/workflows/techdocs.yml"
 
 jobs:
   publish-techdocs-site:
@@ -41,6 +44,33 @@ jobs:
           aws-secret-access-key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
 ```
 
+### Advanced Example
+
+The following will skip the publish step (e.g. to verify site generation in a pull request) and installs additional plugins:
+
+```yaml
+name: Publish TechDocs Site
+
+on:
+  push:
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - ".github/workflows/techdocs.yml"
+
+jobs:
+  publish-techdocs-site:
+    name: Publish TechDocs Site
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup Node
+        uses: Staffbase/backstage-techdocs-action@v1
+        with:
+          entity-name: 'pizza-service'
+          additional-plugins: 'mkdocs-minify-plugin\>=0.3 mkdocs-awesome-pages-plugin==2.8.0 mdx_include==1.4.2'
+          skip-publish: 'true'
+```
+
 ## Configuration
 
 | Name                    | Description                                                                        | Required | Default        |
@@ -55,6 +85,8 @@ jobs:
 | `aws-secret-access-key` | **Required if `publisher-type: awsS3`** - AWS Secret Access Key                    | `false`  |                |
 | `azure-account-name`    | **Required if `publisher-type: azureBlobStorage`** - Azure Account Name            | `false`  |                |
 | `azure-account-key`     | **Required if `publisher-type: azureBlobStorage`** - Azure Account Key             | `false`  |                |
+| `additional-plugins`    | Space separated list of additional python plugins (Bash quoting for special chars) | `false`  |                |
+| `skip-publish`          | Indicates whether publish step should be skipped                                   | `false`  | `false`        |
 
 ## Contributing
 

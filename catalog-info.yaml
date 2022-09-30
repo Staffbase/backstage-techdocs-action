@@ -10,4 +10,4 @@ metadata:
     - backstage
 spec:
   type: other
-  lifecycle: experimental
+  lifecycle: production
