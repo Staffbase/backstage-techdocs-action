@@ -38,7 +38,7 @@ jobs:
         uses: Staffbase/backstage-techdocs-action@v1
         with:
           entity-name: 'pizza-service'
-          publisher-type: 'awsS3'
+          publisher-type: 'azureBlobStorage'
           storage-name: 'staffbase-backstage-techdocs'
           azure-account-name: ${{ secrets.TECHDOCS_AZURE_ACCOUNT_NAME }}
           azure-account-key: ${{ secrets.TECHDOCS_AZURE_ACCESS_KEY }}
