@@ -40,8 +40,8 @@ jobs:
           entity-name: 'pizza-service'
           publisher-type: 'awsS3'
           storage-name: 'staffbase-backstage-techdocs'
-          aws-access-key-id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
+          azure-account-name: ${{ secrets.TECHDOCS_AZURE_ACCOUNT_NAME }}
+          azure-account-key: ${{ secrets.TECHDOCS_AZURE_ACCESS_KEY }}
 ```
 
 ### Advanced Example
