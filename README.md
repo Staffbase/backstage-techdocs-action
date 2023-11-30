@@ -39,7 +39,7 @@ jobs:
         with:
           entity-name: 'pizza-service'
           publisher-type: 'azureBlobStorage'
-          storage-name: 'staffbase-backstage-techdocs'
+          storage-name: 'techdocs'
           azure-account-name: ${{ secrets.TECHDOCS_AZURE_ACCOUNT_NAME }}
           azure-account-key: ${{ secrets.TECHDOCS_AZURE_ACCESS_KEY }}
 ```
