@@ -19,5 +19,5 @@ jobs:
       - name: Merge PR
         run: |
           gh pr merge ${{ github.event.pull_request.html_url }} --merge --admin
-          env:
+        env:
           GITHUB_TOKEN: ${{ steps.get_token.outputs.token }}
