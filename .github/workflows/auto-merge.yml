@@ -4,20 +4,11 @@ on:
   pull_request:
 
 jobs:
-  auto-merge:
+  dependabot:
     name: Auto Merge
-    runs-on: ubuntu-22.04
-    if: github.actor == 'dependabot[bot]'
-    steps:
-      - name: Get App Token
-        uses: tibdex/github-app-token@v2.1.0
-        id: get_token
-        with:
-          app_id: ${{ vars.STAFFBASE_ACTIONS_APP_ID }}
-          private_key: ${{ secrets.STAFFBASE_ACTIONS_PRIVATE_KEY }}
-
-      - name: Merge PR
-        run: |
-          gh pr merge ${{ github.event.pull_request.html_url }} --merge --admin
-        env:
-          GITHUB_TOKEN: ${{ steps.get_token.outputs.token }}
+    uses: Staffbase/gha-workflows/.github/workflows/template_automerge_dependabot.yml@v4.0.2
+    with:
+      force: true
+    secrets:
+      app_id: ${{ vars.STAFFBASE_ACTIONS_APP_ID }}
+      private_key: ${{ secrets.STAFFBASE_ACTIONS_PRIVATE_KEY }}
