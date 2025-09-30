@@ -34,7 +34,7 @@ inputs:
     description: 'Azure Account Name'
     required: false
   azure-account-key:
-    description: 'Azure Account Name'
+    description: 'Azure Account Key'
     required: false
   additional-plugins:
     description: 'List of additional python plugins to use for site creation'
