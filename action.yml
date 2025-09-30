@@ -55,7 +55,12 @@ runs:
           exit 1
         fi
         
-        if [[ "${{ inputs.skip-publish }}" == "false" && -n "${{ inputs.publisher-type }}" ]]; then
+        if [[ "${{ inputs.skip-publish }}" == "false" ]]; then
+          if [[ -z "${{ inputs.publisher-type }}" ]]; then
+            echo "::error::publisher-type is required when skip-publish is false"
+            exit 1
+          fi
+          
           if [[ "${{ inputs.publisher-type }}" == "awsS3" ]]; then
             if [[ -z "${{ inputs.storage-name }}" || -z "${{ inputs.aws-access-key-id }}" || -z "${{ inputs.aws-secret-access-key }}" ]]; then
               echo "::error::storage-name, aws-access-key-id, and aws-secret-access-key are required for AWS S3 publishing"
@@ -66,6 +71,9 @@ runs:
               echo "::error::storage-name, azure-account-name, and azure-account-key are required for Azure Blob Storage publishing"
               exit 1
             fi
+          else
+            echo "::error::publisher-type must be 'awsS3' or 'azureBlobStorage', got '${{ inputs.publisher-type }}'"
+            exit 1
           fi
         fi
 
