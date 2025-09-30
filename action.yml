@@ -70,14 +70,14 @@ runs:
         fi
 
     - name: Setup Node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
+      with:
+        node-version: '22'
 
     - name: Setup Python
       uses: actions/setup-python@v6
-
-    - name: Install techdocs-cli
-      shell: bash
-      run: sudo npm install -g @techdocs/cli
+      with:
+        python-version: '3.12'
 
     - name: Install mkdocs and mkdocs plugins
       shell: bash
@@ -94,7 +94,7 @@ runs:
 
     - name: Generate docs site
       shell: bash
-      run: techdocs-cli generate --no-docker --verbose
+      run: npx @techdocs/cli generate --no-docker --verbose
 
     - name: Publish TechDocs site to AWS S3
       if: inputs.skip-publish == 'false' && inputs.publisher-type == 'awsS3' && inputs.aws-access-key-id != '' && inputs.aws-secret-access-key != '' && inputs.aws-region != ''
@@ -104,7 +104,7 @@ runs:
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
         AWS_REGION: ${{ inputs.aws-region }}
       run: |
-        techdocs-cli publish --publisher-type ${{ inputs.publisher-type }} \
+        npx @techdocs/cli publish --publisher-type ${{ inputs.publisher-type }} \
         --storage-name ${{ inputs.storage-name }} \
         --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-kind }}/${{ inputs.entity-name }}
 
@@ -112,7 +112,7 @@ runs:
       if: inputs.skip-publish == 'false' && inputs.publisher-type == 'azureBlobStorage' && inputs.azure-account-name != '' && inputs.azure-account-key != ''
       shell: bash
       run: |
-        techdocs-cli publish --publisher-type ${{ inputs.publisher-type }} \
+        npx @techdocs/cli publish --publisher-type ${{ inputs.publisher-type }} \
         --storage-name ${{ inputs.storage-name }} \
         --entity ${{ inputs.entity-namespace }}/${{ inputs.entity-kind }}/${{ inputs.entity-name }} \
         --azureAccountName ${{ inputs.azure-account-name }} \
