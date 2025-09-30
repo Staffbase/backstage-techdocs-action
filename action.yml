@@ -47,6 +47,28 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Validate inputs
+      shell: bash
+      run: |
+        if [[ -z "${{ inputs.entity-name }}" ]]; then
+          echo "::error::entity-name is required"
+          exit 1
+        fi
+        
+        if [[ "${{ inputs.skip-publish }}" == "false" && -n "${{ inputs.publisher-type }}" ]]; then
+          if [[ "${{ inputs.publisher-type }}" == "awsS3" ]]; then
+            if [[ -z "${{ inputs.storage-name }}" || -z "${{ inputs.aws-access-key-id }}" || -z "${{ inputs.aws-secret-access-key }}" ]]; then
+              echo "::error::storage-name, aws-access-key-id, and aws-secret-access-key are required for AWS S3 publishing"
+              exit 1
+            fi
+          elif [[ "${{ inputs.publisher-type }}" == "azureBlobStorage" ]]; then
+            if [[ -z "${{ inputs.storage-name }}" || -z "${{ inputs.azure-account-name }}" || -z "${{ inputs.azure-account-key }}" ]]; then
+              echo "::error::storage-name, azure-account-name, and azure-account-key are required for Azure Blob Storage publishing"
+              exit 1
+            fi
+          fi
+        fi
+
     - name: Setup Node
       uses: actions/setup-node@v4
 
