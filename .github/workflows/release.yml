@@ -8,6 +8,6 @@ on:
 jobs:
   update_release_draft:
     name: Update Release
-    uses: Staffbase/gha-workflows/.github/workflows/template_release_drafter.yml@v8.1.0
+    uses: Staffbase/gha-workflows/.github/workflows/template_release_drafter.yml@v9.1.0
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
