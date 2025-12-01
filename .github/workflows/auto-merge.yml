@@ -6,7 +6,7 @@ on:
 jobs:
   dependabot:
     name: Auto Merge
-    uses: Staffbase/gha-workflows/.github/workflows/template_automerge_dependabot.yml@v8.1.0
+    uses: Staffbase/gha-workflows/.github/workflows/template_automerge_dependabot.yml@v9.1.0
     with:
       force: true
     secrets:
