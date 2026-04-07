@@ -32,10 +32,10 @@ on:
 jobs:
   publish-techdocs-site:
     name: Publish TechDocs Site
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Setup Node
-        uses: Staffbase/backstage-techdocs-action@v1
+        uses: Staffbase/backstage-techdocs-action@892be7cc155022260e34cf0330f8424946b55c11 # v0.2.3
         with:
           entity-name: 'pizza-service'
           publisher-type: 'azureBlobStorage'
@@ -61,10 +61,10 @@ on:
 jobs:
   publish-techdocs-site:
     name: Publish TechDocs Site
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Setup Node
-        uses: Staffbase/backstage-techdocs-action@v1
+        uses: Staffbase/backstage-techdocs-action@892be7cc155022260e34cf0330f8424946b55c11 # v0.2.3
         with:
           entity-name: 'pizza-service'
           additional-plugins: 'mkdocs-minify-plugin\>=0.3 mkdocs-awesome-pages-plugin==2.8.0 mdx_include==1.4.2'
