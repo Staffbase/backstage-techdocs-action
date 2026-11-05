@@ -67,7 +67,7 @@ jobs:
         uses: Staffbase/backstage-techdocs-action@892be7cc155022260e34cf0330f8424946b55c11 # v0.2.3
         with:
           entity-name: 'pizza-service'
-          additional-plugins: 'mkdocs-minify-plugin\>=0.3 mkdocs-awesome-pages-plugin==2.8.0 mdx_include==1.4.2'
+          additional-plugins: 'mkdocs-minify-plugin==0.8.0 mkdocs-awesome-pages-plugin==2.10.1 mdx_include==1.4.2'
           skip-publish: 'true'
 ```
 
@@ -87,6 +87,12 @@ jobs:
 | `azure-account-key`     | **Required if `publisher-type: azureBlobStorage`** - Azure Account Key             | `false`  |                |
 | `additional-plugins`    | Space separated list of additional python plugins (Bash quoting for special chars) | `false`  |                |
 | `skip-publish`          | Indicates whether publish step should be skipped                                   | `false`  | `false`        |
+
+### Versions
+
+The action installs a pinned `@techdocs/cli` from `package-lock.json` (instead of resolving the latest via `npx`) together with `mkdocs-techdocs-core==1.7.1`. The CLI is kept on the `1.11.x` line, which uses `@backstage/plugin-techdocs-node` `1.15.x`, matching Backstage `1.52`. `@techdocs/cli` `1.12+` uses `@backstage/plugin-techdocs-node` `2.x`, which removes any MkDocs plugin outside its allowlist (`techdocs-core`, `search`, `redirects`, `group`) during generation, so plugins passed through `additional-plugins` would be silently dropped.
+
+`overrides` in `package.json` replace deprecated transitive dependencies (`glob`, `uuid`, `babel-polyfill`/`core-js@2`) so the install produces no npm deprecation warnings.
 
 ## Contributing
 
