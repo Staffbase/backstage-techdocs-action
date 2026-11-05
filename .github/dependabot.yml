@@ -13,3 +13,16 @@ updates:
       github-actions:
         patterns:
           - "*"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: "08:00"
+      timezone: "Europe/Berlin"
+    cooldown:
+      default-days: 7
+    ignore:
+      # 1.12+ depends on @backstage/plugin-techdocs-node 2.x, which strips
+      # non-allowlisted MkDocs plugins. Bump deliberately alongside Backstage.
+      - dependency-name: "@techdocs/cli"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
